@@ -30,5 +30,15 @@ export default [
         path: 'kanban',
         loadComponent: () => import('./kanban').then((c) => c.Kanban),
         data: { breadcrumb: 'Kanban' }
+    },
+    {
+        path: 'stepper',
+        loadComponent: () => import('./stepper').then((c) => c.Stepper),
+        data: { breadcrumb: 'Stepper' }
+    },
+    {
+        path: 'login-page',
+        loadComponent: () => import('./LoginPage').then((c) => c.LoginPage),
+        data: { breadcrumb: 'Login Page' }
     }
 ] as Routes;

@@ -105,6 +105,16 @@ export class AppMenuService {
                     label: 'Task List',
                     icon: 'pi pi-fw pi-check-square',
                     routerLink: ['/apps/tasklist']
+                },
+                {
+                    label: 'Stepper',
+                    icon: 'pi pi-fw pi-bars',
+                    routerLink: ['/apps/stepper']
+                },
+                {
+                    label: 'Login Page',
+                    icon: 'pi pi-fw pi-sign-in',
+                    routerLink: ['/apps/login-page']
                 }
             ]
         },

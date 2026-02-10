@@ -1,43 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { StepperModule } from 'primeng/stepper';
 
 @Component({
-  selector: 'ngx-stepper',
-  templateUrl: 'stepper.component.html',
-  styleUrls: ['stepper.component.scss'],
+    selector: 'app-stepper-component',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, StepperModule, InputTextModule, ButtonModule],
+    templateUrl: 'stepper.component.html',
+    styleUrls: ['stepper.component.scss']
 })
-export class StepperComponent implements OnInit {
+export class StepperComponent {
+    private readonly fb = inject(FormBuilder);
 
-  firstForm: UntypedFormGroup;
-  secondForm: UntypedFormGroup;
-  thirdForm: UntypedFormGroup;
+    step = 1;
 
-  constructor(private fb: UntypedFormBuilder) {
-  }
-
-  ngOnInit() {
-    this.firstForm = this.fb.group({
-      firstCtrl: ['', Validators.required],
+    readonly firstForm = this.fb.group({
+        first: ['', Validators.required]
     });
 
-    this.secondForm = this.fb.group({
-      secondCtrl: ['', Validators.required],
+    readonly secondForm = this.fb.group({
+        second: ['', Validators.required]
     });
 
-    this.thirdForm = this.fb.group({
-      thirdCtrl: ['', Validators.required],
-    });
-  }
+    goTo(activateCallback: (index: number) => void, nextStep: number): void {
+        activateCallback(nextStep);
+    }
 
-  onFirstSubmit() {
-    this.firstForm.markAsDirty();
-  }
-
-  onSecondSubmit() {
-    this.secondForm.markAsDirty();
-  }
-
-  onThirdSubmit() {
-    this.thirdForm.markAsDirty();
-  }
+    confirm(): void {
+        console.log('[Stepper] confirmed', { ...this.firstForm.value, ...this.secondForm.value });
+    }
 }

@@ -108,8 +108,9 @@ interface NotificationsBars {
                                                 <div
                                                     class="text-sm text-surface-700 dark:text-surface-200 flex items-center gap-1">
                                                     {{ item.time }}
-                                                    <div *ngIf="!item.read"
-                                                         class="w-2! h-2! rounded-full bg-green-500"></div>
+                                                    @if (!item.read) {
+                                                        <div class="w-2! h-2! rounded-full bg-green-500"></div>
+                                                    }
                                                 </div>
                                             </div>
                                             <div
@@ -118,21 +119,23 @@ interface NotificationsBars {
                                                     {{ item.description }}
                                                 </p>
                                             </div>
-                                            <div *ngIf="item.attachment"
-                                                 class="p-2 bg-surface-100 dark:bg-surface-800 border border-surface rounded-lg flex items-start gap-3">
+                                            @if (item.attachment) {
                                                 <div
-                                                    class="w-8 h-8 flex items-center justify-center rounded-md shadow-sm bg-surface-0 dark:bg-surface-950">
-                                                    <i class="pi pi-file-pdf text-primary"></i>
+                                                    class="p-2 bg-surface-100 dark:bg-surface-800 border border-surface rounded-lg flex items-start gap-3">
+                                                    <div
+                                                        class="w-8 h-8 flex items-center justify-center rounded-md shadow-sm bg-surface-0 dark:bg-surface-950">
+                                                        <i class="pi pi-file-pdf text-primary"></i>
+                                                    </div>
+                                                    <div class="flex-1 flex flex-col gap-0.5">
+                                                        <span
+                                                            class="text-sm font-medium text-surface-700 dark:text-surface-200">{{ item.attachment.title }}</span>
+                                                        <span
+                                                            class="text-xs text-surface-700 dark:text-surface-200">{{ item.attachment.size }}</span>
+                                                    </div>
+                                                    <p-button icon="pi pi-download" severity="contrast"
+                                                              styleClass="w-8! h-8! p-0!"></p-button>
                                                 </div>
-                                                <div class="flex-1 flex flex-col gap-0.5">
-                                                    <span
-                                                        class="text-sm font-medium text-surface-700 dark:text-surface-200">{{ item.attachment.title }}</span>
-                                                    <span
-                                                        class="text-xs text-surface-700 dark:text-surface-200">{{ item.attachment.size }}</span>
-                                                </div>
-                                                <p-button icon="pi pi-download" severity="contrast"
-                                                          styleClass="w-8! h-8! p-0!"></p-button>
-                                            </div>
+                                            }
                                         </div>
                                     </li>
                                 }
