@@ -4,6 +4,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { DividerModule } from 'primeng/divider';
 import { LayoutService } from '@/layout/service/layout.service';
 import { ButtonModule } from 'primeng/button';
+import { AppFeaturesService } from '@/layout/service/app.features.service';
 
 type RightMenuNav = 'add' | 'actions' | 'visual' | 'code' | 'other' | 'list';
 
@@ -32,7 +33,7 @@ type CollapsibleSection = {
         <p-drawer
             header=""
             [(visible)]="rightMenuVisible"
-            position="right"
+            [position]="features.isRTL() ? 'left' : 'right'"
             styleClass="layout-rightmenu w-full! sm:w-xl!"
             (onShow)="onDrawerShow()"
         >
@@ -72,15 +73,15 @@ type CollapsibleSection = {
                         </span>
                         <span class="font-semibold truncate">{{ title }}</span>
                     </div>
-                    <button type="button" aria-label="Back" class="h-8 w-8 rounded hover:bg-surface-100 flex items-center justify-center">
-                        <i class="pi pi-angle-left"></i>
+                    <button type="button" aria-label="Back" (click)="rightMenuVisible = false" class="h-8 w-8 rounded hover:bg-surface-100 flex items-center justify-center">
+                        <i class="pi" [ngClass]="features.isRTL() ? 'pi-angle-right' : 'pi-angle-left'"></i>
                     </button>
                 </div>
 
-                <!-- ACTIONS content: left rail + scrollable section list -->
-                <div class="flex-1 min-h-0 flex">
+                <!-- ACTIONS content: rail + scrollable section list -->
+                <div class="flex-1 min-h-0 flex" [ngClass]="features.isRTL() ? 'flex-row-reverse' : 'flex-row'">
                     <!-- Rail -->
-                    <div class="w-14 border-r border-surface bg-surface-0 flex flex-col items-center gap-3 py-2">
+                    <div class="w-14 bg-surface-0 flex flex-col items-center gap-3 py-2" [ngClass]="features.isRTL() ? 'border-l border-surface' : 'border-r border-surface'">
                         <button
                             type="button"
                             aria-label="Add"
@@ -122,7 +123,7 @@ type CollapsibleSection = {
                         <div class="pb-3" *ngIf="activeNav === 'add'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="addExpanded = !addExpanded"
                                 [attr.aria-expanded]="addExpanded"
                             >
@@ -144,7 +145,7 @@ type CollapsibleSection = {
                         <div class="pb-3" *ngIf="activeNav === 'actions'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="actionsExpanded = !actionsExpanded"
                                 [attr.aria-expanded]="actionsExpanded"
                             >
@@ -170,7 +171,7 @@ type CollapsibleSection = {
                         <div class="border-t border-surface pt-3 mt-3" *ngIf="activeNav === 'visual'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="visualRecipes.expanded = !visualRecipes.expanded"
                                 [attr.aria-expanded]="visualRecipes.expanded"
                             >
@@ -192,7 +193,7 @@ type CollapsibleSection = {
                         <div class="border-t border-surface pt-3 mt-3" *ngIf="activeNav === 'code'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="codeRecipes.expanded = !codeRecipes.expanded"
                                 [attr.aria-expanded]="codeRecipes.expanded"
                             >
@@ -214,7 +215,7 @@ type CollapsibleSection = {
                         <div class="border-t border-surface pt-3 mt-3" *ngIf="activeNav === 'other'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="otherRecipes.expanded = !otherRecipes.expanded"
                                 [attr.aria-expanded]="otherRecipes.expanded"
                             >
@@ -236,7 +237,7 @@ type CollapsibleSection = {
                         <div class="border-t border-surface pt-3 mt-3" *ngIf="activeNav === 'list'">
                             <button
                                 type="button"
-                                class="w-full flex items-center justify-between text-left"
+                                class="w-full flex items-center justify-between text-start"
                                 (click)="otherActionsExpanded = !otherActionsExpanded"
                                 [attr.aria-expanded]="otherActionsExpanded"
                             >
@@ -247,11 +248,11 @@ type CollapsibleSection = {
                             <div *ngIf="otherActionsExpanded" class="mt-3 flex flex-col gap-1">
                                 <button
                                     type="button"
-                                    class="w-full flex items-center gap-3 py-2 px-2 rounded text-left hover:bg-surface-100 dark:hover:bg-surface-800"
+                                    class="w-full flex items-center gap-3 py-2 px-2 rounded text-start hover:bg-surface-100 dark:hover:bg-surface-800"
                                     *ngFor="let item of otherActions"
                                     (click)="onOtherActionClick(item)"
                                 >
-                                    <i class="pi pi-align-left text-surface-500"></i>
+                                    <i class="pi" [ngClass]="features.isRTL() ? 'pi-align-right' : 'pi-align-left'" class="text-surface-500"></i>
                                     <span class="text-sm text-surface-700 dark:text-surface-0">{{ item }}</span>
                                 </button>
                             </div>
@@ -276,6 +277,7 @@ type CollapsibleSection = {
 })
 export class AppRightMenu {
     layoutService: LayoutService = inject(LayoutService);
+    features: AppFeaturesService = inject(AppFeaturesService);
 
     title = 'scored_set';
 

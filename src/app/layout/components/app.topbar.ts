@@ -13,6 +13,7 @@ import {OverlayBadgeModule} from 'primeng/overlaybadge';
 import {AvatarModule} from 'primeng/avatar';
 import {FormsModule} from "@angular/forms";
 import { AppTopnav } from '@/layout/components/app.topnav';
+import { AppFeaturesService } from '@/layout/service/app.features.service';
 
 interface NotificationsBars {
     id: string;
@@ -28,11 +29,18 @@ interface NotificationsBars {
         <div class="layout-topbar">
             <div class="topbar-left">
                 <a tabindex="0" #menubutton type="button" class="menu-button" (click)="onMenuButtonClick()">
-                    <i class="pi" [ngClass]="layoutService.layoutState().staticMenuDesktopInactive ? 'pi-angle-right' : 'pi-angle-left'"></i>
+                    <i class="pi" [ngClass]="getMenuIcon()"></i>
                 </a>
                 <img class="horizontal-logo" src="/layout/images/logo-white.svg" alt="logo"/>
                 <span class="topbar-separator"></span>
                 <div class="hidden lg:block" app-topnav></div>
+                
+                <!-- Language Switcher -->
+                <button (click)="features.toggleLanguage()" class="ml-4 px-3 py-1 rounded-full border border-white/20 hover:bg-white/10 text-white text-xs transition-all flex items-center gap-2">
+                    <i class="pi pi-globe"></i>
+                    <span>{{ features.language() === 'en' ? 'Arabic' : 'English' }}</span>
+                </button>
+
                 <a routerLink="/">
                     <img class="mobile-logo" src="/layout/images/logo-{{ isDarkTheme() ? 'white' : 'dark' }}.svg"
                          alt="logo"/>
@@ -41,6 +49,14 @@ interface NotificationsBars {
 
             <div class="topbar-right">
                 <ul class="topbar-menu">
+                    <!-- Shortcut Info -->
+                    <li class="hidden xl:flex items-center px-4">
+                        <span class="text-xs opacity-60 flex items-center gap-1">
+                            <kbd class="bg-surface-800 px-1 rounded border border-white/10">Ctrl</kbd> + 
+                            <kbd class="bg-surface-800 px-1 rounded border border-white/10">K</kbd> to search
+                        </span>
+                    </li>
+
                     <li class="right-sidebar-item">
                         <a class="right-sidebar-button" (click)="toggleSearchBar()">
                             <i class="pi pi-search"></i>
@@ -54,12 +70,15 @@ interface NotificationsBars {
                         <a class="right-sidebar-button relative z-50" pStyleClass="@next" enterFromClass="hidden"
                            enterActiveClass="animate-scalein" leaveActiveClass="animate-fadeout" leaveToClass="hidden"
                            [hideOnOutsideClick]="true">
-                            <span class="w-2 h-2 rounded-full bg-red-500 absolute top-2 right-2.5"></span>
+                            @if (features.unreadCount() > 0) {
+                                <span class="w-2 h-2 rounded-full bg-red-500 absolute top-2 right-2.5"></span>
+                            }
                             <i class="pi pi-bell"></i>
                         </a>
                         <div
-                            class="list-none m-0 py-4 px-4 rounded-3xl border border-surface absolute bg-surface-0 dark:bg-surface-900 overflow-hidden hidden origin-top min-w-72 sm:w-[24rem] mt-2 right-0 z-50 top-auto shadow-[0px_56px_16px_0px_rgba(0,0,0,0.00),0px_36px_14px_0px_rgba(0,0,0,0.01),0px_20px_12px_0px_rgba(0,0,0,0.02),0px_9px_9px_0px_rgba(0,0,0,0.03),0px_2px_5px_0px_rgba(0,0,0,0.04)]"
-                            style="right: -100px"
+                            class="list-none m-0 py-4 px-4 rounded-3xl border border-surface absolute bg-surface-0 dark:bg-surface-900 overflow-hidden hidden origin-top min-w-72 sm:w-[24rem] mt-2 z-50 top-auto shadow-[0px_56px_16px_0px_rgba(0,0,0,0.00),0px_36px_14px_0px_rgba(0,0,0,0.01),0px_20px_12px_0px_rgba(0,0,0,0.02),0px_9px_9px_0px_rgba(0,0,0,0.03),0px_2px_5px_0px_rgba(0,0,0,0.04)]"
+                            [ngStyle]="features.isRTL() ? {'left': '-100px'} : {'right': '-100px'}"
+                            [ngClass]="features.isRTL() ? 'left-0' : 'right-0'"
                         >
                             <div class="flex items-center gap-2 justify-between">
                                 <span
@@ -154,6 +173,13 @@ interface NotificationsBars {
                             class="list-none p-2 m-0 rounded-2xl border border-surface overflow-hidden absolute bg-surface-0 dark:bg-surface-900 hidden origin-top w-52 mt-2 right-0 z-999 top-auto shadow-[0px_56px_16px_0px_rgba(0,0,0,0.00),0px_36px_14px_0px_rgba(0,0,0,0.01),0px_20px_12px_0px_rgba(0,0,0,0.02),0px_9px_9px_0px_rgba(0,0,0,0.03),0px_2px_5px_0px_rgba(0,0,0,0.04)]"
                         >
                             <ul class="flex flex-col gap-1">
+                                <li class="p-2 border-b border-surface">
+                                    <div class="text-[10px] text-surface-500 uppercase tracking-widest px-1">Role</div>
+                                    <div class="flex gap-1 mt-1">
+                                        <button (click)="features.setRole('admin')" [class]="features.role() === 'admin' ? 'bg-primary text-white' : 'hover:bg-emphasis'" class="flex-1 text-[10px] py-1 rounded border border-surface transition-colors">Admin</button>
+                                        <button (click)="features.setRole('viewer')" [class]="features.role() === 'viewer' ? 'bg-primary text-white' : 'hover:bg-emphasis'" class="flex-1 text-[10px] py-1 rounded border border-surface transition-colors">User</button>
+                                    </div>
+                                </li>
                                 <li>
                                     <a class="label-small dark:text-surface-400 flex gap-2 py-2 px-2.5 rounded-lg items-center hover:bg-emphasis transition-colors duration-150 cursor-pointer">
                                         <i class="pi pi-user"></i>
@@ -198,6 +224,7 @@ interface NotificationsBars {
 })
 export class AppTopbar {
     layoutService = inject(LayoutService);
+    features = inject(AppFeaturesService);
 
     isDarkTheme = computed(() => this.layoutService.isDarkTheme());
 
@@ -295,6 +322,17 @@ export class AppTopbar {
     selectedNotificationBar = model(this.notificationsBars()[0].id ?? 'inbox');
 
     selectedNotificationsBarData = computed(() => this.notifications().find((f) => f.id === this.selectedNotificationBar()).data);
+
+    getMenuIcon() {
+        const inactive = this.layoutService.layoutState().staticMenuDesktopInactive;
+        const isRTL = this.features.isRTL();
+
+        if (isRTL) {
+            return inactive ? 'pi-angle-left' : 'pi-angle-right';
+        } else {
+            return inactive ? 'pi-angle-right' : 'pi-angle-left';
+        }
+    }
 
     onMenuButtonClick() {
         this.layoutService.onMenuToggle();

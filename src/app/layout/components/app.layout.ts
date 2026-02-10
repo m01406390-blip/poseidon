@@ -11,11 +11,13 @@ import { AppFooter } from '@/layout/components/app.footer';
 import { AppSearch } from '@/layout/components/app.search';
 import { AppRightMenu } from '@/layout/components/app.rightmenu';
 import { AppTabsbar } from '@/layout/components/app.tabsbar';
+import { AppCommandPalette } from './app.command-palette';
+import { AppFeaturesService } from '@/layout/service/app.features.service';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppConfigurator, AppBreadcrumb, AppFooter, AppSearch, AppRightMenu, AppTabsbar],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppConfigurator, AppBreadcrumb, AppFooter, AppSearch, AppRightMenu, AppTabsbar, AppCommandPalette],
     template: `
         <div class="layout-wrapper" [ngClass]="containerClass()">
             <div app-sidebar></div>
@@ -33,12 +35,14 @@ import { AppTabsbar } from '@/layout/components/app.tabsbar';
             <app-configurator />
             <div app-search></div>
             <div app-rightmenu></div>
+            <app-command-palette />
             <div class="layout-mask animate-fadein"></div>
         </div>
     `
 })
 export class AppLayout {
     overlayMenuOpenSubscription: Subscription;
+    features = inject(AppFeaturesService);
 
     menuOutsideClickListener: any;
 

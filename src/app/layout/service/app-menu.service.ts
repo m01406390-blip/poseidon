@@ -115,6 +115,11 @@ export class AppMenuService {
                     label: 'Login Page',
                     icon: 'pi pi-fw pi-sign-in',
                     routerLink: ['/apps/login-page']
+                },
+                {
+                    label: 'AG Grid Demo',
+                    icon: 'pi pi-fw pi-table',
+                    routerLink: ['/ag-grid-demo']
                 }
             ]
         },
@@ -390,94 +395,6 @@ export class AppMenuService {
                     label: 'Create',
                     icon: 'pi pi-fw pi-plus',
                     routerLink: ['/profile/create']
-                }
-            ]
-        },
-        { separator: true },
-        {
-            label: 'Hierarchy',
-            icon: 'pi pi-fw pi-align-left',
-            items: [
-                {
-                    label: 'Submenu 1',
-                    icon: 'pi pi-fw pi-align-left',
-                    items: [
-                        {
-                            label: 'Submenu 1.1',
-                            icon: 'pi pi-fw pi-align-left',
-                            items: [
-                                {
-                                    label: 'Submenu 1.1.1',
-                                    icon: 'pi pi-fw pi-align-left'
-                                },
-                                {
-                                    label: 'Submenu 1.1.2',
-                                    icon: 'pi pi-fw pi-align-left'
-                                },
-                                {
-                                    label: 'Submenu 1.1.3',
-                                    icon: 'pi pi-fw pi-align-left'
-                                }
-                            ]
-                        },
-                        {
-                            label: 'Submenu 1.2',
-                            icon: 'pi pi-fw pi-align-left',
-                            items: [
-                                {
-                                    label: 'Submenu 1.2.1',
-                                    icon: 'pi pi-fw pi-align-left'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    label: 'Submenu 2',
-                    icon: 'pi pi-fw pi-align-left',
-                    items: [
-                        {
-                            label: 'Submenu 2.1',
-                            icon: 'pi pi-fw pi-align-left',
-                            items: [
-                                {
-                                    label: 'Submenu 2.1.1',
-                                    icon: 'pi pi-fw pi-align-left'
-                                },
-                                {
-                                    label: 'Submenu 2.1.2',
-                                    icon: 'pi pi-fw pi-align-left'
-                                }
-                            ]
-                        },
-                        {
-                            label: 'Submenu 2.2',
-                            icon: 'pi pi-fw pi-align-left',
-                            items: [
-                                {
-                                    label: 'Submenu 2.2.1',
-                                    icon: 'pi pi-fw pi-align-left'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        { separator: true },
-        {
-            label: 'Start',
-            icon: 'pi pi-fw pi-download',
-            items: [
-                {
-                    label: 'Buy Now',
-                    icon: 'pi pi-fw pi-shopping-cart',
-                    url: 'https://www.primefaces.org/store'
-                },
-                {
-                    label: 'Documentation',
-                    icon: 'pi pi-fw pi-info-circle',
-                    routerLink: ['/documentation']
                 }
             ]
         }

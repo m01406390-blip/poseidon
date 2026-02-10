@@ -30,6 +30,11 @@ export const appRoutes: Routes = [
                 loadChildren: () => import('@/pages/uikit/uikit.routes')
             },
             {
+                path: 'ag-grid-demo',
+                data: {breadcrumb: 'AG Grid Demo'},
+                loadComponent: () => import('@/pages/ag-grid-demo').then((c) => c.AgGridDemoComponent)
+            },
+            {
                 path: 'documentation',
                 data: {breadcrumb: 'Documentation'},
                 loadComponent: () => import('@/pages/documentation/documentation').then((c) => c.Documentation)

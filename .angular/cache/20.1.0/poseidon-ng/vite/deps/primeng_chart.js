@@ -1,16 +1,18 @@
 import {
+  BaseComponent
+} from "./chunk-I5W5AV2X.js";
+import {
+  BaseStyle
+} from "./chunk-A2GAWTNK.js";
+import {
+  SharedModule
+} from "./chunk-ZFUVGEWF.js";
+import {
   Chart,
   registerables
 } from "./chunk-EAXMXUH2.js";
-import {
-  BaseComponent
-} from "./chunk-W6BKYCKT.js";
-import {
-  BaseStyle
-} from "./chunk-KFH5UO6T.js";
-import {
-  SharedModule
-} from "./chunk-2IOPJIDA.js";
+import "./chunk-WDDVEW64.js";
+import "./chunk-5S7Y4TFL.js";
 import {
   CommonModule,
   isPlatformBrowser
@@ -48,8 +50,6 @@ import {
 import "./chunk-6XXUSXOD.js";
 import "./chunk-4ALNEIOD.js";
 import "./chunk-PZP3Q6FW.js";
-import "./chunk-WDDVEW64.js";
-import "./chunk-5S7Y4TFL.js";
 import "./chunk-4MWRP73S.js";
 
 // node_modules/chart.js/auto/auto.js

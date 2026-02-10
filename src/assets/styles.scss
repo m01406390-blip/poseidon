@@ -4,3 +4,48 @@
 @use 'primeicons/primeicons.css';
 @use './demo/demo.scss';
 
+[dir="rtl"] {
+    .layout-sidebar {
+        border-radius: 1.5rem 0 0 1.5rem !important;
+        border-right: none !important;
+        border-left: var(--d-sidebar-border);
+
+        .logo-image {
+            margin-right: 0 !important;
+            margin-left: 0.5rem !important;
+        }
+
+        .layout-menuitem-icon {
+            margin-right: 0 !important;
+            margin-left: 0.75rem !important;
+        }
+
+        .layout-submenu-toggler {
+            margin-right: auto !important;
+            margin-left: 0 !important;
+            transform: rotate(180deg);
+        }
+    }
+
+    .layout-topbar {
+        .topbar-separator {
+            margin-left: 0 !important;
+            margin-right: 1.25rem !important;
+        }
+
+        .topbar-menu {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+    }
+
+    .p-drawer-header {
+        flex-direction: row-reverse;
+    }
+
+    /* Ag-Grid RTL Support Overlay */
+    .ag-theme-alpine, .ag-theme-material, .ag-theme-quartz {
+        direction: rtl;
+    }
+}
+
