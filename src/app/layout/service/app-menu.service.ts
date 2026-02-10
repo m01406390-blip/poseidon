@@ -108,7 +108,7 @@ export class AppMenuService {
                 },
                 {
                     label: 'Stepper',
-                    icon: 'pi pi-fw pi-bars',
+                    icon: 'pi pi-fw pi-directions-alt',
                     routerLink: ['/apps/stepper']
                 },
                 {
