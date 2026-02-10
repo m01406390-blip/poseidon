@@ -28,7 +28,7 @@ import { LayoutService } from '@/layout/service/layout.service';
                 tabindex="0"
                 pRipple
                 [pTooltip]="item.label"
-                [tooltipDisabled]="!(!isSlim() && !isHorizontal() && root && !active)"
+                [tooltipDisabled]="!(isStaticCollapsed() || (!isSlim() && !isHorizontal() && root && !active))"
             >
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
                 <span class="layout-menuitem-text label-small text-inherit">{{ item.label }}</span>
@@ -60,7 +60,7 @@ import { LayoutService } from '@/layout/service/layout.service';
                 tabindex="0"
                 pRipple
                 [pTooltip]="item.label"
-                [tooltipDisabled]="!(!isSlim() && !isHorizontal() && root)"
+                [tooltipDisabled]="!(isStaticCollapsed() || (!isSlim() && !isHorizontal() && root))"
             >
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
                 <span class="layout-menuitem-text label-small text-inherit">{{ item.label }}</span>
@@ -109,9 +109,9 @@ export class AppMenuitem implements OnInit, OnDestroy {
 
     @Input() index!: number;
 
-    @Input() @HostBinding('class.layout-root-menuitem') root!: boolean;
+    @Input() @HostBinding('class.layout-root-menuitem') root = false;
 
-    @Input() parentKey!: string;
+    @Input() parentKey = '';
 
     @ViewChild('submenu') submenu!: ElementRef;
 
@@ -139,6 +139,12 @@ export class AppMenuitem implements OnInit, OnDestroy {
     isCompact = computed(() => this.layoutService.isCompact());
 
     isHorizontal = computed(() => this.layoutService.isHorizontal());
+
+    isStaticCollapsed = computed(() => {
+        const config = this.layoutService.layoutConfig();
+        const state = this.layoutService.layoutState();
+        return config.menuMode === 'static' && !!state.staticMenuDesktopInactive && this.layoutService.isDesktop();
+    });
 
     get isDesktop() {
         return this.layoutService.isDesktop();

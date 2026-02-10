@@ -10,17 +10,19 @@ import { AppBreadcrumb } from '@/layout/components/app.breadcrumb';
 import { AppFooter } from '@/layout/components/app.footer';
 import { AppSearch } from '@/layout/components/app.search';
 import { AppRightMenu } from '@/layout/components/app.rightmenu';
+import { AppTabsbar } from '@/layout/components/app.tabsbar';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppConfigurator, AppBreadcrumb, AppFooter, AppSearch, AppRightMenu],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppConfigurator, AppBreadcrumb, AppFooter, AppSearch, AppRightMenu, AppTabsbar],
     template: `
         <div class="layout-wrapper" [ngClass]="containerClass()">
             <div app-sidebar></div>
             <div class="layout-content-wrapper">
                 <div class="layout-content-wrapper-inside">
                     <div app-topbar></div>
+                    <div app-tabsbar></div>
                     <div class="layout-content">
                         <div app-breadcrumb></div>
                         <router-outlet></router-outlet>
@@ -145,6 +147,8 @@ export class AppLayout {
             'layout-overlay-active': layoutState.overlayMenuActive || layoutState.staticMenuMobileActive,
             'layout-mobile-active': layoutState.staticMenuMobileActive,
             'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
+            // Icons-only collapsed sidebar (AntD-like). Works on desktop regardless of menuMode.
+            'layout-sidebar-collapsed': layoutState.staticMenuDesktopInactive && this.layoutService.isDesktop(),
             'layout-sidebar-active': layoutState.sidebarActive,
             'layout-sidebar-anchored': layoutState.anchored
         };

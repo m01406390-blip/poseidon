@@ -4,7 +4,7 @@ import {
   addRoundedRectPath,
   isObject,
   toTRBLCorners
-} from "./chunk-VDFMDEVW.js";
+} from "./chunk-EAXMXUH2.js";
 import "./chunk-4MWRP73S.js";
 
 // node_modules/chartjs-chart-matrix/dist/chartjs-chart-matrix.esm.js

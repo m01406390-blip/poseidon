@@ -1,31 +1,27 @@
 import {
   BaseEditableHolder
-} from "./chunk-RMTOVPR4.js";
-import "./chunk-E4N7KXI4.js";
+} from "./chunk-UPQMZ2SF.js";
+import "./chunk-QRBELSUL.js";
 import {
   NG_VALUE_ACCESSOR
-} from "./chunk-LNLCWJOM.js";
-import "./chunk-YE7JSBGJ.js";
+} from "./chunk-YGOJV2AP.js";
+import "./chunk-W6BKYCKT.js";
 import {
   BaseStyle
-} from "./chunk-MUC35YQD.js";
+} from "./chunk-KFH5UO6T.js";
 import {
   Header,
   PrimeTemplate,
   SharedModule
-} from "./chunk-PHFMZFTR.js";
-import "./chunk-3P3YI57Q.js";
-import {
-  z2 as z
-} from "./chunk-ICG2ZITK.js";
+} from "./chunk-2IOPJIDA.js";
 import {
   CommonModule,
   NgIf,
   NgStyle,
   NgTemplateOutlet,
   isPlatformServer
-} from "./chunk-A73ZCNWU.js";
-import "./chunk-7DPHYZ4E.js";
+} from "./chunk-Y6Z7NIYK.js";
+import "./chunk-O5ZFVNOV.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -63,10 +59,14 @@ import {
   ɵɵqueryRefresh,
   ɵɵtemplate,
   ɵɵtext
-} from "./chunk-G2W4VDTI.js";
-import "./chunk-YVXMBCE5.js";
-import "./chunk-G6ECYYJH.js";
-import "./chunk-RTGP7ALM.js";
+} from "./chunk-B3Q6VDYK.js";
+import "./chunk-6XXUSXOD.js";
+import "./chunk-4ALNEIOD.js";
+import "./chunk-PZP3Q6FW.js";
+import "./chunk-WDDVEW64.js";
+import {
+  z2 as z
+} from "./chunk-5S7Y4TFL.js";
 import {
   __spreadValues
 } from "./chunk-4MWRP73S.js";
@@ -336,7 +336,7 @@ var Editor = class _Editor extends BaseEditableHolder {
       return;
     }
     if (!this.dynamicQuill) {
-      import("./quill-CSRIP6WK.js").then((quillModule) => {
+      import("./quill-HLETVD3V.js").then((quillModule) => {
         this.dynamicQuill = quillModule.default;
         this.createQuillEditor();
       }).catch((e) => console.error(e.message));

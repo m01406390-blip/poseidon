@@ -1,9 +1,65 @@
 @use '_sass_variables' as *;
 
 @media screen and (min-width: $breakpoint) {
+    .layout-sidebar-collapsed,
     .layout-static-inactive {
         .layout-sidebar {
-            margin-left: -17rem;
+            margin-left: 0;
+            width: 5rem;
+            overflow: visible;
+
+            .logo {
+                justify-content: center;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .logo-image {
+                margin-right: 0;
+            }
+
+            .app-name {
+                display: none;
+            }
+
+            .layout-menu-container {
+                padding: 0.5rem;
+            }
+
+            .layout-menu {
+                .layout-menuitem-root-text {
+                    display: none;
+                }
+
+                ul {
+                    a {
+                        justify-content: center;
+                        padding-left: 0.5rem;
+                        padding-right: 0.5rem;
+
+                        .layout-menuitem-icon {
+                            margin-right: 0;
+                            font-size: 1.25rem;
+                        }
+
+                        .layout-menuitem-text {
+                            display: none;
+                        }
+
+                        .layout-submenu-toggler {
+                            display: none;
+                        }
+                    }
+
+                    ul {
+                        li {
+                            a {
+                                padding-left: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
         .layout-topbar {
             .menu-button {

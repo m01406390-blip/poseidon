@@ -3,7 +3,6 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {StyleClassModule} from 'primeng/styleclass';
 import {LayoutService} from '@/layout/service/layout.service';
-import {AppBreadcrumb} from './app.breadcrumb';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {IconFieldModule} from 'primeng/iconfield';
@@ -13,6 +12,7 @@ import {BadgeModule} from 'primeng/badge';
 import {OverlayBadgeModule} from 'primeng/overlaybadge';
 import {AvatarModule} from 'primeng/avatar';
 import {FormsModule} from "@angular/forms";
+import { AppTopnav } from '@/layout/components/app.topnav';
 
 interface NotificationsBars {
     id: string;
@@ -23,16 +23,16 @@ interface NotificationsBars {
 @Component({
     selector: '[app-topbar]',
     standalone: true,
-    imports: [RouterModule, CommonModule, FormsModule, StyleClassModule, AppBreadcrumb, InputTextModule, ButtonModule, IconFieldModule, InputIconModule, RippleModule, BadgeModule, OverlayBadgeModule, AvatarModule],
+    imports: [RouterModule, CommonModule, FormsModule, StyleClassModule, AppTopnav, InputTextModule, ButtonModule, IconFieldModule, InputIconModule, RippleModule, BadgeModule, OverlayBadgeModule, AvatarModule],
     template: `
         <div class="layout-topbar">
             <div class="topbar-left">
                 <a tabindex="0" #menubutton type="button" class="menu-button" (click)="onMenuButtonClick()">
-                    <i class="pi pi-chevron-left"></i>
+                    <i class="pi" [ngClass]="layoutService.layoutState().staticMenuDesktopInactive ? 'pi-angle-right' : 'pi-angle-left'"></i>
                 </a>
                 <img class="horizontal-logo" src="/layout/images/logo-white.svg" alt="logo"/>
                 <span class="topbar-separator"></span>
-                <div app-breadcrumb></div>
+                <div class="hidden lg:block" app-topnav></div>
                 <a routerLink="/">
                     <img class="mobile-logo" src="/layout/images/logo-{{ isDarkTheme() ? 'white' : 'dark' }}.svg"
                          alt="logo"/>

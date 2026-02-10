@@ -1,28 +1,41 @@
 .layout-topbar {
-    padding: 0.75rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     position: static;
     width: calc(100% - 4rem);
     margin: 0 auto;
     z-index: 999;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     color: var(--text-color);
     transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+    max-width: 100%;
 
     .topbar-left {
         display: flex;
         align-items: center;
+        flex: 1 1 auto;
+        min-width: 0;
+
+        [app-topnav] {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
 
         .horizontal-logo {
             display: none;
         }
     }
 
+    .topbar-right {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
     .menu-button {
-        width: 2.5rem;
-        height: 2.5rem;
-        line-height: 2.5rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        line-height: 2.25rem;
         text-align: center;
         color: var(--text-color);
         overflow: hidden;
@@ -45,7 +58,7 @@
 
         i {
             line-height: inherit;
-            font-size: 1.125rem;
+            font-size: 1rem;
         }
     }
 
@@ -63,7 +76,7 @@
 
     .viewname {
         font-weight: 600;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
     }
 
     .topbar-menu {
@@ -92,15 +105,15 @@
                 }
 
                 .profile-image {
-                    width: 2.5rem;
-                    height: 2.5rem;
+                    width: 2.25rem;
+                    height: 2.25rem;
                 }
             }
 
             > a {
-                width: 2.5rem;
-                height: 2.5rem;
-                line-height: 2.5rem;
+                width: 2.25rem;
+                height: 2.25rem;
+                line-height: 2.25rem;
                 text-align: center;
                 color: var(--text-color);
                 overflow: hidden;
@@ -124,7 +137,7 @@
 
                 i {
                     line-height: inherit;
-                    font-size: 1.125rem;
+                    font-size: 1rem;
                 }
 
                 .topbar-badge {

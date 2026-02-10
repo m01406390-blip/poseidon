@@ -242,6 +242,10 @@ export class LayoutService {
                 ...prev,
                 staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive
             }));
+
+            // Keep the collapsed state clean (icons-only) by closing any expanded items.
+            // This avoids leaving nested submenus open when the sidebar is collapsed.
+            this.reset();
         } else {
             this.layoutState.update((prev) => ({
                 ...prev,
