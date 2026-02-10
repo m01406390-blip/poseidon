@@ -85,8 +85,8 @@ type CollapsibleSection = {
                             type="button"
                             aria-label="Add"
                             (click)="activeNav = 'add'"
-                            class="h-9 w-9 rounded-full flex items-center justify-center border-2 border-sky-200 text-sky-600 bg-surface-0"
-                            [ngClass]="activeNav === 'add' ? 'border-sky-600 text-sky-700 ring-2 ring-sky-100' : 'hover:bg-surface-100'"
+                            class="h-9 w-9 rounded-full flex items-center justify-center border-2 transition-colors duration-200"
+                            [ngClass]="activeNav === 'add' ? 'bg-blue-600 border-blue-600 text-white shadow-md' : 'border-sky-200 text-sky-600 bg-surface-0 hover:bg-surface-100'"
                         >
                             <i class="pi pi-plus"></i>
                         </button>
@@ -96,8 +96,8 @@ type CollapsibleSection = {
                             type="button"
                             [attr.aria-label]="nav.ariaLabel"
                             (click)="activeNav = nav.id"
-                            class="h-9 w-9 rounded-full flex items-center justify-center border-2 border-sky-200 text-sky-600 bg-surface-0"
-                            [ngClass]="activeNav === nav.id ? 'border-sky-600 text-sky-700 ring-2 ring-sky-100' : 'hover:bg-surface-100'"
+                            class="h-9 w-9 rounded-full flex items-center justify-center border-2 transition-colors duration-200"
+                            [ngClass]="activeNav === nav.id ? 'bg-blue-600 border-blue-600 text-white shadow-md' : 'border-sky-200 text-sky-600 bg-surface-0 hover:bg-surface-100'"
                         >
                             <i class="pi" [ngClass]="nav.icon"></i>
                         </button>
