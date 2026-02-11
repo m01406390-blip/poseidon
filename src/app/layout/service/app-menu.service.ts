@@ -426,19 +426,23 @@ export class AppMenuService {
         });
     }
 
-    selectRoot(root: AppMenuItem) {
+    selectRoot(root: AppMenuItem, options?: { navigate?: boolean }) {
         if (!root?.label) return;
         this.activeRootLabel.set(root.label);
 
-        // Navigate to first meaningful route inside the root
+        // Default UX: switch sidebar section only (no navigation)
+        if (!options?.navigate) return;
+
+        // Optional: navigate to first meaningful route inside the root
         const target = this.findFirstNavigable(root);
         if (target?.routerLink?.[0]) {
             this.router.navigateByUrl(target.routerLink[0]);
-        } else {
-            const url = this.firstUrl(target?.url);
-            if (url) {
-                window.open(url, target?.target || '_blank');
-            }
+            return;
+        }
+
+        const url = this.firstUrl(target?.url);
+        if (url) {
+            window.open(url, target?.target || '_blank');
         }
     }
 

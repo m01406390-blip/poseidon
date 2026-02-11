@@ -96,6 +96,16 @@ export class TabsService {
         this.router.navigateByUrl(normalized);
     }
 
+    closeAll() {
+        const existingHome = this.tabs().find((t) => t.url === '/');
+        const home: AppTab = existingHome ?? { url: '/', title: 'Home', closable: false };
+
+        this.tabs.set([{ ...home, url: '/', closable: false }]);
+        this.activeUrl.set('/');
+        this.router.navigateByUrl('/');
+        this.persist();
+    }
+
     private shouldTrack(url: string) {
         if (!url || url === '/notfound') return false;
         if (url.startsWith('/landing')) return false;

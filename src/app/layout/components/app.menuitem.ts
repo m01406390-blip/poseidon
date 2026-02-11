@@ -39,7 +39,7 @@ import { LayoutService } from '@/layout/service/layout.service';
                 (click)="itemClick($event)"
                 (mouseenter)="onMouseEnter()"
                 [ngClass]="item.class"
-                [routerLink]="item.routerLink"
+                [routerLink]="coerceRouterLink(item.routerLink)"
                 routerLinkActive="active-route"
                 [routerLinkActiveOptions]="
                     item.routerLinkActiveOptions || {
@@ -191,6 +191,13 @@ export class AppMenuitem implements OnInit, OnDestroy {
                 }
             }
         });
+    }
+
+    coerceRouterLink(link: any) {
+        if (Array.isArray(link) && link.length === 1 && typeof link[0] === 'string') {
+            return link[0];
+        }
+        return link;
     }
 
     ngOnInit() {

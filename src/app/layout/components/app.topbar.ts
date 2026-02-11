@@ -34,12 +34,6 @@ interface NotificationsBars {
                 <img class="horizontal-logo" src="/layout/images/logo-white.svg" alt="logo"/>
                 <span class="topbar-separator"></span>
                 <div class="hidden lg:block" app-topnav></div>
-                
-                <!-- Language Switcher -->
-                <button (click)="features.toggleLanguage()" class="ml-4 px-3 py-1 rounded-full border border-white/20 hover:bg-white/10 text-white text-xs transition-all flex items-center gap-2">
-                    <i class="pi pi-globe"></i>
-                    <span>{{ features.language() === 'en' ? 'Arabic' : 'English' }}</span>
-                </button>
 
                 <a routerLink="/">
                     <img class="mobile-logo" src="/layout/images/logo-{{ isDarkTheme() ? 'white' : 'dark' }}.svg"
@@ -49,14 +43,6 @@ interface NotificationsBars {
 
             <div class="topbar-right">
                 <ul class="topbar-menu">
-                    <!-- Shortcut Info -->
-                    <li class="hidden xl:flex items-center px-4">
-                        <span class="text-xs opacity-60 flex items-center gap-1">
-                            <kbd class="bg-surface-800 px-1 rounded border border-white/10">Ctrl</kbd> + 
-                            <kbd class="bg-surface-800 px-1 rounded border border-white/10">K</kbd> to search
-                        </span>
-                    </li>
-
                     <li class="right-sidebar-item">
                         <a class="right-sidebar-button" (click)="toggleSearchBar()">
                             <i class="pi pi-search"></i>

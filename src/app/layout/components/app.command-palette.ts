@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { AppMenuService } from '@/layout/service/app-menu.service';
+import { APP_SHORTCUTS } from '@/layout/service/app.shortcuts';
 
 @Component({
     selector: 'app-command-palette',
@@ -59,9 +60,11 @@ import { AppMenuService } from '@/layout/service/app-menu.service';
                 </div>
 
                 <div class="mt-4 pt-2 border-t border-surface flex items-center gap-4 text-[10px] text-surface-400 uppercase tracking-widest">
-                    <div class="flex items-center gap-1"><kbd class="bg-surface-100 px-1 rounded border">↑↓</kbd> Navigate</div>
-                    <div class="flex items-center gap-1"><kbd class="bg-surface-100 px-1 rounded border">↵</kbd> Select</div>
-                    <div class="flex items-center gap-1"><kbd class="bg-surface-100 px-1 rounded border">esc</kbd> Close</div>
+                    @for (sc of shortcuts; track sc.id) {
+                        <div class="flex items-center gap-1">
+                            <kbd class="bg-surface-100 px-1 rounded border">{{ sc.keys }}</kbd> {{ sc.label }}
+                        </div>
+                    }
                 </div>
             </div>
         </p-dialog>
@@ -90,6 +93,8 @@ export class AppCommandPalette {
     visible = false;
     activeIndex = 0;
     query = '';
+
+    readonly shortcuts = APP_SHORTCUTS;
     
     private readonly router = inject(Router);
     private readonly menuService = inject(AppMenuService);

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start)",
+      "Bash(cmd.exe /c \"cd /d c:\\\\Users\\\\msii\\\\Desktop\\\\poseidon && npm start\")",
+      "Bash(where.exe:*)",
+      "Bash(cmd.exe /c \"where npm\")",
+      "Bash(cmd.exe /c \"where node && where npm\")",
+      "Bash(powershell.exe -Command \"& {Get-Command npm; Get-Command node}\")",
+      "Bash(powershell.exe:*)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\npx.cmd\" ng serve --open)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")"
+    ]
+  }
+}

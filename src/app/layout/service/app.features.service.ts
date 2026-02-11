@@ -36,11 +36,6 @@ export class AppFeaturesService {
     readonly notifications = computed(() => this._notifications());
     readonly unreadCount = computed(() => this._notifications().filter(n => !n.read).length);
 
-    toggleLanguage() {
-        this.language.set(this.language() === 'en' ? 'ar' : 'en');
-        this.applyDirection();
-    }
-
     private applyDirection() {
         const dir = this.isRTL() ? 'rtl' : 'ltr';
         document.documentElement.dir = dir;

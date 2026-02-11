@@ -36,6 +36,6 @@ export class AppTopnav {
     }
 
     onRootClick(item: AppMenuItem) {
-        this.menuService.selectRoot(item);
+        this.menuService.selectRoot(item, { navigate: false });
     }
 }

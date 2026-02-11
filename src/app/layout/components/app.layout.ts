@@ -1,4 +1,4 @@
-import { Component, computed, Renderer2, ViewChild } from '@angular/core';
+import { Component, computed, inject, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
