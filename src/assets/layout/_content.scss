@@ -14,7 +14,7 @@
     transition: all 0.2s ease;
 }
 .layout-content-wrapper-inside {
-    max-width: 1540px;
+    max-width: 100%;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -23,7 +23,7 @@
     overflow-x: hidden;
 }
 .layout-content {
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 1rem;
     flex: 1 1 auto;
     position: relative;
     overflow-x: hidden;

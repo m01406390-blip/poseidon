@@ -15,9 +15,9 @@ import { InputTextModule } from 'primeng/inputtext';
             <div class="flex flex-col items-center py-12 px-6 card">
                 <h1 class="text-5xl font-semibold text-surface-950 dark:text-surface-0 text-center leading-tight">
                     Advice and answers<br />
-                    from the Poseidon team
+                    from the is team
                 </h1>
-                <p class="mt-3.5 text-surface-500">Get valuable advice and expert answers directly from the Poseidon team.</p>
+                <p class="mt-3.5 text-surface-500">Get valuable advice and expert answers directly from the is team.</p>
                 <p-iconfield class="mt-8">
                     <p-inputicon class="pi pi-search" />
                     <input pInputText [(ngModel)]="search" placeholder="Search" />

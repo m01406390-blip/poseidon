@@ -28,15 +28,12 @@ interface NotificationsBars {
     template: `
         <div class="layout-topbar">
             <div class="topbar-left">
-                <a tabindex="0" #menubutton type="button" class="menu-button" (click)="onMenuButtonClick()">
-                    <i class="pi" [ngClass]="getMenuIcon()"></i>
-                </a>
-                <img class="horizontal-logo" src="/layout/images/logo-white.svg" alt="logo"/>
+                <img class="horizontal-logo h-16" src="/images/is.png" alt="logo"/>
                 <span class="topbar-separator"></span>
                 <div class="hidden lg:block" app-topnav></div>
 
                 <a routerLink="/">
-                    <img class="mobile-logo" src="/layout/images/logo-{{ isDarkTheme() ? 'white' : 'dark' }}.svg"
+                    <img class="mobile-logo h-16" src="/images/is.png"
                          alt="logo"/>
                 </a>
             </div>
@@ -214,8 +211,6 @@ export class AppTopbar {
 
     isDarkTheme = computed(() => this.layoutService.isDarkTheme());
 
-    @ViewChild('menubutton') menuButton!: ElementRef;
-
     notificationSearch = '';
 
     notificationsBars = signal<NotificationsBars[]>([
@@ -308,21 +303,6 @@ export class AppTopbar {
     selectedNotificationBar = model(this.notificationsBars()[0].id ?? 'inbox');
 
     selectedNotificationsBarData = computed(() => this.notifications().find((f) => f.id === this.selectedNotificationBar()).data);
-
-    getMenuIcon() {
-        const inactive = this.layoutService.layoutState().staticMenuDesktopInactive;
-        const isRTL = this.features.isRTL();
-
-        if (isRTL) {
-            return inactive ? 'pi-angle-left' : 'pi-angle-right';
-        } else {
-            return inactive ? 'pi-angle-right' : 'pi-angle-left';
-        }
-    }
-
-    onMenuButtonClick() {
-        this.layoutService.onMenuToggle();
-    }
 
     showRightMenu() {
         this.layoutService.toggleRightMenu();

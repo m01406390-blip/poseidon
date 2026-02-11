@@ -8,7 +8,7 @@ export interface AppTab {
     closable: boolean;
 }
 
-const STORAGE_KEY = 'poseidon.tabs.v1';
+const STORAGE_KEY = 'is.tabs.v1';
 
 @Injectable({ providedIn: 'root' })
 export class TabsService {

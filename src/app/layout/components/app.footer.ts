@@ -7,8 +7,8 @@ import {LayoutService} from '@/layout/service/layout.service';
     template: `
         <div class="layout-footer">
             <div class="footer-logo-container">
-                <img src="/layout/images/logo-{{ isDarkTheme() ? 'white' : 'dark' }}.svg" alt="poseidon-layout"/>
-                <span class="footer-app-name">Poseidon</span>
+                <img src="/images/is.png" alt="is-layout"/>
+                <span class="footer-app-name">is</span>
             </div>
             <span class="footer-copyright">&#169; Your Organization - 2025</span>
         </div>

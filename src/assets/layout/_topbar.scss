@@ -1,7 +1,7 @@
 .layout-topbar {
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 1rem;
     position: static;
-    width: calc(100% - 4rem);
+    width: 100%;
     margin: 0 auto;
     z-index: 999;
     display: flex;
@@ -24,6 +24,7 @@
 
         .horizontal-logo {
             display: none;
+            height: 3rem;
         }
     }
 

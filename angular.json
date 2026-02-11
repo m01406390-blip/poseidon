@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "poseidon-ng": {
+        "is-ng": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/poseidon-ng",
+                        "outputPath": "dist/is-ng",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": [
@@ -67,10 +67,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "poseidon-ng:build:production"
+                            "buildTarget": "is-ng:build:production"
                         },
                         "development": {
-                            "buildTarget": "poseidon-ng:build:development"
+                            "buildTarget": "is-ng:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
